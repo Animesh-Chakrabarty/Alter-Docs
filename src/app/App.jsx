@@ -1,10 +1,9 @@
 import "../App.css";
 import { Route, Routes } from "react-router-dom";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Home from "../pages/Home";
-import CategorizedToolList from "../pages/CategorizedToolList";
-import FileUploadPage from "../pages/FileUploadPage";
+import CategorizedToolListPage from "../pages/CategorizedToolListPage";
+import CompressPDFPage from "../pages/PDFToolPages/CompressPDFPage";
 
 const App = () => {
   return (
@@ -17,11 +16,13 @@ const App = () => {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/:toolCategory" element={<CategorizedToolList />} />
-            <Route path="/pdf-tools/:tool" element={<FileUploadPage />} />
+            <Route
+              path="/:toolCategory"
+              element={<CategorizedToolListPage />}
+            />
+            <Route path="/pdf-tools/:tool" element={<CompressPDFPage />} />
           </Routes>
         </main>
-        <Footer />
       </main>
     </main>
   );

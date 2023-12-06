@@ -1,11 +1,11 @@
 export const homePageList = [
   {
-    title: "pdf tools",
+    title: "PDF tools",
     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, quia? Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ",
     onClickRoute: "pdf-tools",
   },
   {
-    title: "image tools",
+    title: "Image tools",
     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, quia? Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ",
     onClickRoute: "img-tools",
   },

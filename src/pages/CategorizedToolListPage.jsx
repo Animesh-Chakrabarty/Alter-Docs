@@ -4,7 +4,7 @@ import { pdfToolList } from "../utils/constant";
 import { imgToolList } from "../utils/constant";
 import ToolCard from "../components/ToolCard";
 
-const CategorizedToolList = () => {
+const CategorizedToolListPage = () => {
   const { toolCategory } = useParams();
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const CategorizedToolList = () => {
         {isPDF ? "PDF" : "Image"} Tools
       </p>
       {/* Tools List */}
-      <div className="flex flex-wrap gap-5">
+      <div className="flex justify-center flex-wrap  gap-5">
         {isPDF
           ? pdfToolList.map((item) => (
               <ToolCard
@@ -43,4 +43,4 @@ const CategorizedToolList = () => {
   );
 };
 
-export default CategorizedToolList;
+export default CategorizedToolListPage;

@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         lato: ["Lato", "sans-serif"],
         sourceSans: ["Source Sans 3", "sans-serif"],
+        robotoSlab: ["Roboto Slab", "serif"],
       },
       screens: {
         mdlg: "950px",
