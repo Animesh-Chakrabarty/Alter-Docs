@@ -47,6 +47,11 @@ export const pdfToolList = [
     body: "Insert page numbers in pdf with ease",
     onClickRoute: "insert-page-no",
   },
+  {
+    task: "Add Watermark",
+    body: "Add personalised watermark on pdf in a click",
+    onClickRoute: "add-watermark",
+  },
 ];
 
 export const imgToolList = [

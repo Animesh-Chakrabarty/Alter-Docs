@@ -17,7 +17,7 @@ const Home = () => {
         ))}
       </section>
       {/* Bottom Section */}
-      <section className="text-center mt-2 flex  justify-around items-center px-10 ">
+      <section className="text-center mt-2 flex  justify-center items-center gap-[100px] px-10 ">
         {/* Tagline & button */}
         <div className="text-left ">
           <p className="text-[30px] font-robotoSlab font-semibold">
