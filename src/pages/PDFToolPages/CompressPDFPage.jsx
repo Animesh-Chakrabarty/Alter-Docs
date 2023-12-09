@@ -23,7 +23,7 @@ const CompressPDFPage = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.authentication.data.token);
 
-  // 1.Getting the server and task ID
+  // 1.Getting the server and task ID when user gets into /compress-pdf age 
   const { data, isLoading, isError, error, refetch } =
     useGetServerAndTaskID("compress");
 
@@ -34,9 +34,8 @@ const CompressPDFPage = () => {
   dispatch(setServer(data?.server));
   dispatch(setTaskID(data?.task));
 
-  // 2.Upload the file on the server under the provided taskID
-
-  
+  console.log(data)
+    
   return (
     <div className="flex justify-between">
       {/* FileInput  */}

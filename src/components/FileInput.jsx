@@ -19,20 +19,15 @@ const FileInput = () => {
     file
   );
 
-  // const {
-  //   data: processData,
-  //   isLoading: processIsLoading,
-  //   isError: processIsError,
-  //   error: processError,
-  //   refetch: processRefetch,
-  // } = useStartProcess(data?.server_filename, taskID, file);
+ 
 
   const uploadFile = () => {
     refetch();
-    console.log(data);
-    // data && processRefetch();
   };
+  
+  console.log(data);
 
+  
   return (
     <div className="">
       <div className="relative bg-orange-300 h-[300px] w-[600px]">

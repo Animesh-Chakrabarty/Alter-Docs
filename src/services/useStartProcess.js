@@ -18,7 +18,7 @@ const startProcess = async (serverFileName, server, taskID, token) => {
 
     const requestData = {
       task: taskID,
-      tool: "compress", // Replace with the tool you want to use
+      tool: "compress",
       files: filesToProcess,
     };
 
@@ -35,27 +35,16 @@ const startProcess = async (serverFileName, server, taskID, token) => {
       if (response.ok) {
         const responseData = await response.json();
         console.log("Files processed successfully:", responseData);
-        // Handle response data accordingly
-        // downloadFiles(server, taskID);
+        return responseData;
       } else {
         throw new Error("Failed to process files");
       }
     } catch (error) {
       console.error("Error processing files:", error);
-      // Handle errors during file processing
     }
   } else {
     console.error("No server filename available");
-    // Notify the user or handle the case where server filename is not available
   }
 };
 
-const useStartProcess = (serverFileName, server, taskID) => {
-  const token = useSelector((state) => state.authentication.data.token);
-  return useQuery({
-    queryKey: ["start-process", token, server, taskID],
-    queryFn: () => startProcess(serverFileName, server, taskID, token),
-  });
-};
-
-export default useStartProcess;
+export default startProcess;

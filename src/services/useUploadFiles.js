@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useSelector } from "react-redux";
+import startProcess from "./useStartProcess";
 
 const upLoad = async (server, taskID, file, token) => {
   if (file) {
@@ -25,16 +26,16 @@ const upLoad = async (server, taskID, file, token) => {
         const responseData = await response.json();
         console.log("File uploaded successfully:", responseData);
         // Handle response data accordingly
+        const data = startProcess(responseData?.server_filename, server, taskID, token);
+        console.log(data)
       } else {
         throw new Error("Failed to upload file");
       }
     } catch (error) {
       console.error("Error uploading file:", error);
-      // Handle errors during file upload
     }
   } else {
     console.error("No file selected");
-    // Notify the user to select a file
   }
 };
 
