@@ -3,6 +3,7 @@ import FileInput from "../../components/FileInput";
 import { useDispatch, useSelector } from "react-redux";
 import useGetServerAndTaskID from "../../services/useGetServerAndTaskID";
 import { setServer, setTaskID } from "../../features/authenticationSlice";
+import { useParams } from "react-router-dom";
 
 const compressPDFOptions = [
   {
@@ -23,6 +24,7 @@ const CompressPDFPage = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.authentication.data.token);
 
+
   // 1.Getting the server and task ID when user gets into /compress-pdf age 
   const { data, isLoading, isError, error, refetch } =
     useGetServerAndTaskID("compress");
@@ -40,7 +42,7 @@ const CompressPDFPage = () => {
     <div className="flex justify-between">
       {/* FileInput  */}
       <div className="flex justify-center">
-        <FileInput />
+        <FileInput tool="compress" />
       </div>
       {/* Options */}
       <div className="flex flex-col gap-5">

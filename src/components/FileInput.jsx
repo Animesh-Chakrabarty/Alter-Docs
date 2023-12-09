@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { SlDocs } from "react-icons/sl";
-import useUploadFiles from "../services/useUploadFiles";
+import uploadFile from "../services/useUploadFiles";
+import startProcess from "../services/useStartProcess";
 import { useSelector } from "react-redux";
 import useStartProcess from "../services/useStartProcess";
+import { useQuery } from "@tanstack/react-query";
+import downloadFile from "../services/downloadFile";
 
-const FileInput = () => {
+const FileInput = ({ tool }) => {
+  const token = useSelector((state) => state.authentication.data.token);
   const server = useSelector((state) => state.authentication.data.server);
   const taskID = useSelector((state) => state.authentication.data.taskID);
   const [file, setFile] = useState(null);
@@ -13,21 +17,31 @@ const FileInput = () => {
     setFile(e.target.files[0]);
   };
 
-  const { data, isLoading, isError, error, refetch } = useUploadFiles(
-    server,
-    taskID,
-    file
-  );
+  // 1.Upload file
+  const {
+    data: uploadData,
+    isLoading: uploadIsLoading,
+    refetch: uploadRefetch,
+  } = useQuery({
+    queryKey: ["upload-file", token, server, taskID],
+    queryFn: () => uploadFile(server, taskID, file, token),
+  });
 
- 
+  const serverFileName = uploadData?.server_filename;
 
-  const uploadFile = () => {
-    refetch();
+  // 2.Start process when serverFileName is available
+  const { data: processData, isLoading: processIsLoading } = useQuery({
+    queryKey: ["start-process", token, server, taskID],
+    queryFn: () => startProcess(serverFileName, server, taskID, token),
+    enabled: !!serverFileName,
+  });
+
+  const uploadFileLocal = () => {
+    uploadRefetch();
   };
-  
-  console.log(data);
 
-  
+  console.log(processData);
+
   return (
     <div className="">
       <div className="relative bg-orange-300 h-[300px] w-[600px]">
@@ -45,9 +59,22 @@ const FileInput = () => {
           Choose File
         </label>
       </div>
-      <button className="bg-blue-500 px-5 py-3 " onClick={uploadFile}>
-        Upload File
-      </button>
+      {uploadIsLoading || processIsLoading ? (
+        <div>
+          <p>Processing...</p>
+        </div>
+      ) : processData?.status === "TaskSuccess" ? (
+        <button
+          className="bg-blue-500 px-5 py-3 "
+          onClick={() => downloadFile(server, taskID, token)}
+        >
+          Download file
+        </button>
+      ) : (
+        <button className="bg-blue-500 px-5 py-3 " onClick={uploadFileLocal}>
+          {tool} File
+        </button>
+      )}
     </div>
   );
 };

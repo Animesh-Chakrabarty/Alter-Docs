@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import startProcess from "./useStartProcess";
 
-const upLoad = async (server, taskID, file, token) => {
+const uploadFile = async (server, taskID, file, token) => {
   if (file) {
     const uploadURL = `https://${server}/v1/upload`;
 
@@ -25,9 +25,7 @@ const upLoad = async (server, taskID, file, token) => {
       if (response.ok) {
         const responseData = await response.json();
         console.log("File uploaded successfully:", responseData);
-        // Handle response data accordingly
-        const data = startProcess(responseData?.server_filename, server, taskID, token);
-        console.log(data)
+        return responseData;
       } else {
         throw new Error("Failed to upload file");
       }
@@ -39,12 +37,4 @@ const upLoad = async (server, taskID, file, token) => {
   }
 };
 
-const useUploadFiles = (server, taskID, file) => {
-  const token = useSelector((state) => state.authentication.data.token);
-  return useQuery({
-    queryKey: ["upload-file", server, taskID],
-    queryFn: () => upLoad(server, taskID, file, token),
-  });
-};
-
-export default useUploadFiles;
+export default uploadFile;
