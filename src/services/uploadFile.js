@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useSelector } from "react-redux";
-import startProcess from "./useStartProcess";
+import startProcess from "./startProcess";
 
 const uploadFile = async (server, taskID, file, token) => {
   if (file) {

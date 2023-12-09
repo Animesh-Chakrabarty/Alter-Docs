@@ -39,7 +39,6 @@ const downloadFile = async (server, taskID,token) => {
     }
   } catch (error) {
     console.error("Error downloading files:", error);
-    // Handle errors during file download
   }
 };
 

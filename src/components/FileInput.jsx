@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { SlDocs } from "react-icons/sl";
-import uploadFile from "../services/useUploadFiles";
-import startProcess from "../services/useStartProcess";
 import { useSelector } from "react-redux";
-import useStartProcess from "../services/useStartProcess";
 import { useQuery } from "@tanstack/react-query";
+import uploadFile from "../services/uploadFile";
+import startProcess from "../services/startProcess";
 import downloadFile from "../services/downloadFile";
 
 const FileInput = ({ tool }) => {

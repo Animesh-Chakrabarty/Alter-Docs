@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import FileInput from "../../components/FileInput";
 import { useDispatch, useSelector } from "react-redux";
-import useGetServerAndTaskID from "../../services/useGetServerAndTaskID";
+import getServerAndTaskID from "../../services/getServerAndTaskID";
 import { setServer, setTaskID } from "../../features/authenticationSlice";
-import { useParams } from "react-router-dom";
 
 const compressPDFOptions = [
   {
@@ -22,12 +21,10 @@ const compressPDFOptions = [
 
 const CompressPDFPage = () => {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.authentication.data.token);
 
-
-  // 1.Getting the server and task ID when user gets into /compress-pdf age 
-  const { data, isLoading, isError, error, refetch } =
-    useGetServerAndTaskID("compress");
+  // 1.Getting the server and task ID when user gets into "/compress-pdf" page 
+  const { data, refetch } =
+    getServerAndTaskID("compress");
 
   useEffect(() => {
     refetch();

@@ -15,9 +15,6 @@ const fetchServerAndTaskID = async (token, tool) => {
     if (response.ok) {
       const data = await response.json();
       const { server, task } = data;
-      // console.log("Server:", server);
-      // console.log("Task ID:", task);
-      // Use server and task ID as needed in your application
       return { server, task };
     } else {
       throw new Error("Failed to retrieve server and task ID");
